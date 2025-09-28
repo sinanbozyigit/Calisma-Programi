@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<title>Öğrenme Timeline</title>
+<style>
+body { font-family: Arial, sans-serif; background:#f0f2f5; margin:40px;}
+h1 { text-align:center; color:#2c3e50;}
+.timeline { position: relative; margin: 40px auto; width: 90%; }
+.event { background:white; border-radius:8px; padding:20px; margin:40px 0; box-shadow:0 2px 6px rgba(0,0,0,0.2); position: relative;}
+.event::before { content: ''; position: absolute; width: 12px; height: 12px; background: #3498db; border-radius: 50%; left: -28px; top: 25px;}
+.event h3 { color:#3498db; margin-top:0; }
+.event p { margin:6px 0; }
+.duration { font-weight:bold; color:#e74c3c; }
+.container { position: relative; padding-left: 40px; border-left: 4px solid #3498db; }
+.notlar { background:#f9f9f9; padding:10px; margin-top:10px; border-left:4px solid #3498db; }
+.notlar textarea { width:100%; height:60px; }
+.completed { margin-top:10px; }
+</style>
+</head>
+<body>
+
+<h1>Öğrenme Timeline</h1>
+
+<div class="timeline container">
+
+  <!-- HTML & CSS -->
+  <div class="event" id="html-css">
+    <h3>HTML & CSS</h3>
+    <p class="duration">29 Eylül 2025 - 12 Ekim 2025 (2 hafta, Haftada 3-4 saat)</p>
+    <p>Hedef: Temel web yapısı, box model, flexbox, grid ve responsive tasarım öğren.</p>
+    <p>Mini Proje: Profil sayfası oluştur.</p>
+    <p>C++ Çalışması: Haftada 2-3 saat</p>
+
+    <div class="notlar">
+      <strong>Not / Öğrendiklerim:</strong>
+      <textarea id="note-html-css" placeholder="Buraya yazabilirsin..."></textarea>
+      <div class="completed">
+        <input type="checkbox" id="check-html-css"> Tamamladım
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Temel -->
+  <div class="event" id="js-temel">
+    <h3>JavaScript (Temel)</h3>
+    <p class="duration">13 Ekim 2025 - 2 Kasım 2025 (3 hafta, Haftada 4-5 saat)</p>
+    <p>Hedef: DOM, event listener, değişkenler, fonksiyonlar, döngüler öğren.</p>
+    <p>Mini Proje: Basit to-do list uygulaması oluştur.</p>
+    <p>C++ Çalışması: Haftada 2-3 saat</p>
+
+    <div class="notlar">
+      <strong>Not / Öğrendiklerim:</strong>
+      <textarea id="note-js-temel" placeholder="Buraya yazabilirsin..."></textarea>
+      <div class="completed">
+        <input type="checkbox" id="check-js-temel"> Tamamladım
+      </div>
+    </div>
+  </div>
+
+  <!-- React -->
+  <div class="event" id="react">
+    <h3>React</h3>
+    <p class="duration">24 Kasım 2025 - 21 Aralık 2025 (4 hafta, Haftada 4-5 saat)</p>
+    <p>Hedef: Component ve state mantığını öğren.</p>
+    <p>Mini Proje: To-do list veya hava durumu uygulaması React ile.</p>
+    <p>C++ Çalışması: Haftada 2-3 saat</p>
+
+    <div class="notlar">
+      <strong>Not / Öğrendiklerim:</strong>
+      <textarea id="note-react" placeholder="Buraya yazabilirsin..."></textarea>
+      <div class="completed">
+        <input type="checkbox" id="check-react"> Tamamladım
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// Kaydetme ve yükleme fonksiyonu
+const blocks = [
+  {note:'note-html-css', check:'check-html-css'},
+  {note:'note-js-temel', check:'check-js-temel'},
+  {note:'note-react', check:'check-react'}
+];
+
+blocks.forEach(b=>{
+  // Notları yükle
+  if(localStorage.getItem(b.note)) document.getElementById(b.note).value = localStorage.getItem(b.note);
+  document.getElementById(b.note).addEventListener('input', e=>{
+    localStorage.setItem(b.note, e.target.value);
+  });
+
+  // Check kutusunu yükle
+  if(localStorage.getItem(b.check) === 'true') document.getElementById(b.check).checked = true;
+  document.getElementById(b.check).addEventListener('change', e=>{
+    localStorage.setItem(b.check, e.target.checked);
+  });
+});
+</script>
+
+</body>
+</html>
